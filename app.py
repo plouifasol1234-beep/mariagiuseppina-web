@@ -31,12 +31,18 @@ st.set_page_config(page_title="Maria Giuseppina · Chef privada", page_icon="�
 
 # ───────────────────────── utilitats ─────────────────────────
 @st.cache_data
+def _encode(path: str, mtime: float) -> str:  # mtime invalida la cache si canvia la foto
+    p = Path(path)
+    ext = p.suffix.lstrip(".").lower()
+    mime = "jpeg" if ext in ("jpg", "jpeg") else ext
+    return f"data:image/{mime};base64,{base64.b64encode(p.read_bytes()).decode()}"
+
+
 def img_uri(name: str) -> str | None:
     for ext in ("jpg", "jpeg", "png", "webp"):
         p = IMG_DIR / f"{name}.{ext}"
         if p.exists():
-            mime = "jpeg" if ext in ("jpg", "jpeg") else ext
-            return f"data:image/{mime};base64,{base64.b64encode(p.read_bytes()).decode()}"
+            return _encode(str(p), p.stat().st_mtime)
     return None
 
 
