@@ -14,7 +14,7 @@ WHATSAPP = "34XXXXXXXXX"  # <-- el teu número, p. ex. 34600111222
 EMAIL = ""                # opcional: "hola@mariagiuseppina.cat"
 
 IMG_DIR = Path(__file__).parent / "img"
-IMAGES = ["tupper", "davantal", "plats", "retrat", "card1", "card2", "card3", "card4", "card5"]
+IMAGES = ["hero", "tupper", "davantal", "plats", "retrat", "card1", "card2", "card3", "card4", "card5"]
 
 PAGES = {
     "inici": "Inici",
@@ -415,7 +415,7 @@ def page_inici():
 <p class="lead fade3">Cuino a casa teva plats casolans, variats i pensats per als vostres gustos. Tu obres la nevera i hi trobes tranquil·litat.</p>
 <div class="btns fade3">{btn("Parlem de casa teva →")}{btn("Veure serveis", "serveis", "ghost")}</div>
 </div>
-<div class="imgbox fade2">{photo("tupper", 500)}
+<div class="imgbox fade2">{photo("hero", 500)}
 <div class="badge"><span class="n">10</span><span class="t">plats complets<br>en la primera experiència</span></div></div>
 </div></section>
 
@@ -430,7 +430,7 @@ def page_inici():
 </div></section>
 
 <section class="sec bg-cream"><div class="wrap grid2">
-<div>{photo("davantal", 480)}</div>
+<div>{photo("tupper", 440)}</div>
 <div>
 <p class="eyebrow">Què puc fer per casa teva?</p>
 <h2 class="title">Que menjar bé deixi de ser una altra preocupació.</h2>
@@ -486,7 +486,10 @@ def page_com_treballo():
     render(f"""
 <div class="mg">
 {page_head("Com treballo", "De la primera conversa a la nevera organitzada", "Un procés clar, pas a pas, perquè només t'hagis de preocupar de gaudir dels plats.")}
-<section class="sec bg-paper"><div class="tl">{steps}</div></section>
+<section class="sec bg-paper"><div class="wrap grid2" style="grid-template-columns:1fr 2fr;align-items:start">
+<div style="position:sticky;top:110px">{photo("davantal", 560)}</div>
+<div class="tl" style="margin:0">{steps}</div>
+</div></section>
 {primera_experiencia()}
 {final_cta()}
 </div>""")
